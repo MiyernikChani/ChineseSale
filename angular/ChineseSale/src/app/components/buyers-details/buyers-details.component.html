@@ -1,0 +1,34 @@
+<p-dialog header="רוכשים: " [modal]="true" [(visible)]="visible"
+    [style]="{ width: '50rem', maxHeight: '75vh', borderRadius: '10px' }" (onHide)="close()" class="h">
+    <div class="gift-details" *ngIf="gift">
+        <div class="gift-header">
+            <img class="gift-image" [src]="'assets/images/' + gift.picture" [alt]="gift.name" />
+            <span class="gift-name">{{ gift.name }}</span>
+        </div>
+    </div>
+    
+    <div class="purchases-container">
+        <div class="purchase-list">
+            <div class="purchase-header">
+                <div class="purchase-column">מספר רכישה</div>
+                <div class="purchase-column">רוכש</div>
+                <div class="purchase-column">טלפון</div>
+                <div class="purchase-column">מספר רכישות</div>
+            </div>
+            
+            <ng-container *ngIf="purchaseList && purchaseList.length; else noPuchases">
+                <div *ngFor="let item of purchaseList" class="purchase-row">
+                    <div class="purchase-column">{{ item.id }}</div>
+                    <div class="purchase-column">{{ item.customer.firstName + " " + item.customer.lastName }}</div>
+                    <div class="purchase-column">{{ item.customer.phone }}</div>
+                    <div class="purchase-column">{{ item.ammount }}</div>
+                </div>
+            </ng-container>
+        </div>
+        <ng-template #noPuchases>
+            <div class="no-purchases">אין רוכשים למתנה זו</div>
+        </ng-template>
+    </div>
+
+    <p-button label="סגור" icon="pi pi-times" class="cancel-button" (click)="close()"></p-button>
+</p-dialog>

@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeicons/2.0.0/primeicons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeng/18.0.0/themes/saga-blue/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeng/18.0.0/primeng.min.css">
+<link rel="stylesheet" href="./add-gift.component.css">
+
+
+<p-toast></p-toast>
+<p-dialog header="Add Gift" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }" (onHide)="route()">
+    <div>
+        <form [formGroup]="frmGift">
+            <div class="form-group">
+                <label>שם מתנה</label><br>
+                <input class="form-control" type="text" formControlName="name"
+                    [class.border-danger]="frmGift.controls['name'].errors && frmGift.controls['name'].touched" />
+                @if(frmGift.controls['name'].errors){
+                <span *ngIf="frmGift.controls['name'].errors['required']"> required </span>
+                <span *ngIf="frmGift.controls['name'].errors['minlength']"> minimum 5 tags </span>
+                <span *ngIf="frmGift.controls['name'].errors['maxlength']"> maximum 50 tags </span>
+                }
+            </div>
+            <div class="form-group">
+                <label>תורם</label><br>
+                <div>
+                    <select class="selectInput" formControlName="donator" class="form-control" name="בחר תורם">
+                        <option *ngFor="let d of donatorList" [ngValue]="d.id">{{ d.name }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>מחיר</label><br>
+                <input [(ngModel)]="defaultPrice" class="form-control" type="number" formControlName="price" />
+                @if(frmGift.controls['price'].errors){
+                <span *ngIf="frmGift.controls['price'].errors['required']"> required </span>
+                <span *ngIf="frmGift.controls['price'].errors['min']"> minimum 1 shekel </span>
+                <span *ngIf="frmGift.controls['price'].errors['maxlength']"> maximum 100 shekels </span>
+                }
+            </div>
+
+            <div class="form-group">
+                <label>קטגוריה</label><br>
+                <div>
+                    <select formControlName="category" class="form-control">
+                        <option *ngFor="let c of categoryList" [ngValue]="c.id">{{ c.title }}</option>
+                    </select>
+                </div>
+            </div>
+            <label>הוספת תמונה</label>
+            <div>
+                <div class="file-upload">
+                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" />
+                    <label for="fileInput" class="custom-file-upload">
+                        <i class="pi pi-upload"></i> <!-- אייקון העלאה מ-PrimeIcons -->
+                    </label>
+                    <div *ngIf="image">
+                        <label>תצוגה מקדימה:</label><br><br>
+                        <img class="picture" [src]="image" alt="תצוגה מקדימה של התמונה"/>
+                    </div>
+                </div>
+            </div>
+                <div style="margin-top: 30px; margin-right: 33%;">
+                    <p-button [disabled]="!frmGift.valid || selectedFile == null" (click)="addGift($event)"
+                        [outlined]="true">save</p-button>
+                    <p-button (click)="shut()" styleClass="closeButton" severity="danger"
+                        [outlined]="true">close</p-button>
+                </div>
+        </form>
+        <p-dialog />

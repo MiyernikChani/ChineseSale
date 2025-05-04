@@ -1,0 +1,103 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeicons/2.0.0/primeicons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeng/18.0.0/themes/saga-blue/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeng/18.0.0/primeng.min.css">
+<link rel="stylesheet" href="./register.component.css">
+
+<p-toast></p-toast>
+
+<body>
+    <div class="login-container flex flex-col md:flex-row">
+        <div class="form-container w-full md:w-5/12 flex flex-col items-center justify-center gap-3 py-5">
+            <h2 class="text-2xl font-bold">Register</h2>
+            <form [formGroup]="frmUser">
+                <div class="flex flex-col gap-2 form-group">
+                    <label for="firstName" class="label">שם פרטי</label>
+                    <input formControlName="firstName" pInputText id="firstName" type="text"
+                        class="input-field form-control" [class.border-danger]="frmUser.controls['firstName'].errors"
+                        [class.aaa]="!frmUser.controls['firstName'].errors" />
+                    @if(frmUser.controls['firstName'].errors){
+                    <span *ngIf="frmUser.controls['firstName'].errors['required']" style="color: red;"> שדה חובה </span>
+                    <span *ngIf="frmUser.controls['firstName'].errors['minlength']" style="color: red;">מינימום 2 תוים
+                    </span>
+                    <span *ngIf="frmUser.controls['firstName'].errors['maxlength']" style="color: red;">מקסימום 50 תוים
+                    </span>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 form-group">
+                    <label for="lastName" class="label">שם משפחה</label>
+                    <input formControlName="lastName" pInputText id="lastName" type="text"
+                        class="input-field form-control" [class.border-danger]="frmUser.controls['lastName'].errors"
+                        [class.aaa]="!frmUser.controls['lastName'].errors" />
+                    @if(frmUser.controls['lastName'].errors){
+                    <span *ngIf="frmUser.controls['lastName'].errors['required']" style="color: red;"> שדה חובה </span>
+                    <span *ngIf="frmUser.controls['lastName'].errors['minlength']" style="color: red;"> מינימום 2 תוים
+                    </span>
+                    <span *ngIf="frmUser.controls['lastName'].errors['maxlength']" style="color: red;"> מקסימום 50 תוים
+                    </span>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 form-group">
+                    <label for="password" class="label">סיסמה</label>
+                    <div class="password-input-container">
+                        <button type="button" class="password-toggle" (click)="togglePasswordVisibility()">
+                            <i [ngClass]="isPasswordVisible ? 'pi pi-eye-slash' : 'pi pi-eye'" class="icon-size"></i>
+                        </button>
+                        <input formControlName="password" id="password" [type]="isPasswordVisible ? 'text' : 'password'"
+                            class="input-field form-control" [class.border-danger]="frmUser.controls['password'].errors"
+                            [class.aaa]="!frmUser.controls['password'].errors" />
+                    </div>
+                    @if(frmUser.controls['password'].errors){
+                    <span *ngIf="frmUser.controls['password'].errors['required']" style="color: red;"> שדה חובה </span>
+                    <span *ngIf="frmUser.controls['password'].errors['minlength']" style="color: red;">מינימום 8 תוים
+                    </span>
+                    <span *ngIf="frmUser.controls['password'].errors['maxlength']" style="color: red;">מקסימום 15 תוים
+                    </span>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 form-group">
+                    <label for="phone" class="label">טלפון</label>
+                    <input formControlName="phone" pInputText id="phone" type="text" class="input-field form-control"
+                        [class.border-danger]="frmUser.controls['phone'].errors"
+                        [class.aaa]="!frmUser.controls['phone'].errors" />
+                    @if(frmUser.controls['phone'].errors){
+                    <span *ngIf="frmUser.controls['phone'].errors['required']" style="color: red;"> שדה חובה </span>
+                    <span *ngIf="frmUser.controls['phone'].errors['minlength']" style="color: red;"> מינימום 9
+                        ספרות</span>
+                    <span *ngIf="frmUser.controls['phone']?.errors?.['maxlength']" style="color: red;">מקסימום 10
+                        ספרות</span>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 form-group">
+                    <label for="mail" class="label">מייל</label>
+                    <input formControlName="mail" pInputText id="mail" type="text" class="input-field form-control"
+                        [class.border-danger]="frmUser.controls['mail'].errors"
+                        [class.aaa]="!frmUser.controls['mail'].errors" />
+                    @if(frmUser.controls['mail'].errors){
+                    <span *ngIf="frmUser.controls['mail'].errors['required']" style="color: red;"> שדה חובה </span>
+                    <span *ngIf="frmUser.controls['mail'].errors['email']" style="color: red;"> כתובת מייל אינה
+                        תקינה</span>
+                    }
+                </div>
+                <div class="flex flex-col gap-2 form-group">
+                    <label for="address" class="label">כתובת</label>
+                    <input formControlName="address" pInputText id="address" type="text"
+                        class="input-field form-control" [class.border-danger]="frmUser.controls['address'].errors"
+                        [class.aaa]="!frmUser.controls['address'].errors" />
+                    @if(frmUser.controls['address'].errors){
+                    <span *ngIf="frmUser.controls['address'].errors['required']" style="color: red;"> שדה חובה </span>
+                    }
+                </div>
+                <div class="flex flex-col gap-2">
+                    <p-button [disabled]="!frmUser.valid" label="Register" icon="pi pi-user-plus" class="btn-login"
+                        (click)="register('User')" />
+                </div>
+            </form>
+        </div>
+        <div class="divider-container w-full md:w-2/12">
+            <p-divider layout="horizontal" class="!flex md:!hidden divider"><b>OR</b></p-divider>
+        </div>
+        <div class="sign-up-container w-full md:w-5/12 flex items-center justify-center py-5">
+            <p-button label="Login" icon="pi pi-user" severity="success" class="btn-signup" (click)="login()"/>
+        </div>
+    </div>
+</body>

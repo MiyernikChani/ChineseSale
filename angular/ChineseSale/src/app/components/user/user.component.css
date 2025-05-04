@@ -1,0 +1,565 @@
+/* עיצוב כללי */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fafafa;  /* רקע בהיר יותר */
+    margin: 0;
+    padding: 0;
+}
+
+/* כותרת ראשית */
+.header {
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    color: #333;
+    margin-left: auto;
+    width: 100%;
+}
+
+.flex.items-center.justify-between {
+    width: 100%;
+}
+
+.center-content {
+    flex-grow: 1; /* דואג שהכיתוב יהיה במרכז */
+    text-align: center;
+}
+
+/* תצוגת גריד */
+.grid-container {
+    margin-right: 12.5%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    width: 75%;
+}
+
+/* קלף מוצר */
+.dataview-product {
+    background-color: #fff;
+    border-radius: 12px;
+    border: 1px solid #eee;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);  /* צל עדין */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.dataview-product:hover {
+    transform: scale(1.05);  /* הגדלה עדינה */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);  /* הצל גדל */
+}
+
+/* תצוגת רשימה */
+.list-view {
+    flex-direction: row;
+    align-items: center;
+    margin: 15px;
+    width: 90%;
+}
+
+/* תמונות */
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;  /* רקע בהיר */
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.dataview-product img {
+    width: 220px;
+    max-height: 150px;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dataview-product img:hover {
+    transform: scale(1.1);  /* הגדלה עדינה בעת ריחוף */
+}
+
+/* תווית מצב */
+.status-label-available {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(48, 207, 96, 0.7);  /* ירוק בהיר */
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.status-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(211, 47, 47, 0.7);  /* אדום עדין */
+    color: #fff;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* פרטי מוצר */
+.product-details {
+    padding: 16px;
+    font-family: 'Roboto', sans-serif;
+    color: #333;
+}
+
+.category {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 8px;
+}
+
+.product-name {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.product-price {
+    font-size: 20px;
+    color: #4caf50;  /* ירוק עדין */
+    font-weight: bold;
+}
+
+/* כפתורים */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;  /* צבע רקע עדין */
+}
+
+button:disabled {
+    background-color: #ddd;
+    cursor: not-allowed;
+}
+
+/* כפתור הוספה לסל */
+.add-to-cart {
+    background-color: #3e8e41;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #2f7035;  /* ירוק כהה */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.add-to-cart:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-to-cart:disabled {
+    background-color: #ddd;
+    color: #aaa;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* כפתור הוספה לרשימת אהובים */
+.red-heart-icon-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.red-heart-icon-button i {
+    color: #e63946;  /* אדום עדין */
+    font-size: 24px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.red-heart-icon-button:hover i {
+    transform: scale(1.2);
+}
+
+.red-heart-icon-button:active i {
+    color: #ff0000;
+    transform: scale(0.9);
+}
+
+/* כפתור התנתקות */
+.logout {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: #f39c12;  /* צבע כתום רך */
+    transition: background-color 0.3s ease;
+    background-color: rgba(243, 156, 18, 0.2);
+    border: none;
+    position: absolute;
+    position: absolute; /* מאפשר מיקום לפי האלמנט העוטף */
+    left: 10%; /* מיקום בצד שמאל */}
+
+.logout:hover {
+    background-color: rgba(243, 156, 18, 0.4);
+}
+
+.container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 100px;
+    width: 100%;
+}
+
+/* כפתור הוספה */
+.addGift {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c; /* צבע אדום עדין */
+    transition: background-color 0.3s ease;
+    border: none;
+    position: absolute; /* מאפשר מיקום לפי האלמנט העוטף */
+    left: 5%; /* מיקום בצד שמאל */
+}
+
+.addGift:hover {
+    background-color: rgba(231, 76, 60, 0.4);
+}
+
+/* אייקונים */
+.pi {
+    font-size: 20px;  /* גודל האייקון */
+    font-weight: bold;  /* עיבוי האייקון */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);  /* הוספת צל בהיר לאייקון */
+}
+
+
+
+/* תצוגת התמונה */
+.image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+
+/* עיצוב כללי לרשימה */
+.list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;  /* ריווח בין האלמנטים */
+    margin: 20px auto;
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* קלף מוצר */
+.list-item {
+    display: flex;
+    justify-content: space-between;  /* פיזור כל האלמנטים לכל רוחב */
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    position: relative;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+    margin-bottom: 20px;  /* ריווח בין כל אלמנט לרשימה */
+}
+
+.list-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* תמונה */
+.item-image-container {
+    flex: 0 0 150px;  /* תמונה לא תתכווץ ולא תגדל */
+    position: relative;
+    margin-left: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #f9f9f9;
+    transition: transform 0.3s ease;
+}
+
+.item-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.item-image-container:hover {
+    transform: scale(1.05);
+}
+
+
+/* פרטי מוצר */
+.item-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin-right: 5%;
+    align-items: center;
+    margin-left: 10px;
+}
+
+/* שם המוצר */
+.item-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* קטגוריה */
+.item-category {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* מחיר */
+.item-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #4caf50;
+    margin-bottom: 20px;
+}
+
+/* כפתורים */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* כפתור הוספה לסל */
+.add-to-cart {
+    background-color: #3e8e41;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.add-to-cart:hover {
+    background-color: #2f7035;
+    transform: translateY(-2px);
+}
+
+.add-to-cart:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+/* כפתור אהבה */
+.red-heart-icon-button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.red-heart-icon-button i {
+    color: #e63946;
+    font-size: 24px;
+}
+
+.red-heart-icon-button:hover i {
+    transform: scale(1.2);
+}
+
+.red-heart-icon-button:active i {
+    color: #ff0000;
+    transform: scale(0.9);
+}
+
+
+
+
+
+.width{
+    width: 69%;
+}
+
+.basket-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 30%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 1000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease-in-out;
+}
+
+.basket-content {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+
+.winners {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(4, 4, 249);  /* צבע כתום רך */
+    transition: background-color 0.3s ease;
+    background-color: rgba(4, 4, 249, 0.2);
+    border: none;
+    position: absolute;
+    position: absolute; /* מאפשר מיקום לפי האלמנט העוטף */
+    left: 15%; /* מיקום בצד שמאל */}
+
+.winners:hover {
+    background-color: rgba(4, 4, 249, 0.3);
+}
+
+.winners-dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .winners-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-height: 50vh; /* הגבלת גובה לדיאלוג ל-50% מהגובה */
+    overflow-y: auto; /* גלילה רק לרשימה */
+    padding-right: 5px; /* מרווח כדי שלא יהיה חיבור לציר הגלילה */
+    width: 100%;
+  }
+  
+  .winners-list::-webkit-scrollbar {
+    width: 8px; /* פס גלילה דק */
+  }
+  
+  .winners-list::-webkit-scrollbar-thumb {
+    background-color: #4CAF50; /* צבע גלילה ירוק */
+    border-radius: 10px;
+    transition: background-color 0.3s;
+  }
+  
+  .winners-list::-webkit-scrollbar-thumb:hover {
+    background-color: #388E3C; /* צבע גלילה כהה יותר בהHover */
+  }
+  
+  .winner-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    width: 90%;
+  }
+  
+  .winner-item:hover {
+    transform: scale(1.01);
+  }
+  
+  .winner-image {
+    width: 60px;
+    height: 60px;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+  
+  .rounded-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .winner-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .gift-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #4CAF50;
+  }
+  
+  .winner-name {
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .cancel-button {
+    align-self: center;
+    background-color: #e57373;
+    color: white;
+    border-radius: 5px;
+    margin-top: 1rem;
+  }
+  

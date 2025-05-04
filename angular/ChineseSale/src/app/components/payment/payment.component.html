@@ -1,0 +1,76 @@
+
+<p-toast></p-toast>
+<p-dialog header="Payment" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }" (onHide)="route()">
+    <form [formGroup]="frmPayment">
+        <div class="form-group">
+            <label>מספר כרטיס</label><br>
+            <input class="form-control" type="text" formControlName="num"
+                [class.border-danger]="frmPayment.controls['num'].errors"
+                [class.aaa]="!frmPayment.controls['num'].errors" /><br>
+            @if(frmPayment.controls['num'].errors){
+            <span *ngIf="frmPayment.controls['num'].errors['required']" style="color: red;"> שדה חובה </span>
+            <span *ngIf="frmPayment.controls['num'].errors['minlength']" style="color: red;"> מקסימום 16 ספרות
+            </span>
+            <span *ngIf="frmPayment.controls['num'].errors['maxlength']" style="color: red;"> מינימום 16 ספרות
+            </span>
+            <span *ngIf="frmPayment.controls['num'].errors['pattern']" style="color: red;">מספרים בלבד</span>
+            }
+        </div>
+        <div class="form-group">
+            <label>תוקף</label><br>
+            <input class="form-control" type="date" formControlName="validity"
+                [class.border-danger]="frmPayment.controls['validity'].errors"
+                [class.aaa]="!frmPayment.controls['validity'].errors" /><br>
+            <span *ngIf="frmPayment.controls['validity'].errors">
+                <span *ngIf="frmPayment.controls['validity'].errors['required']" style="color: red;"> שדה חובה
+                </span>
+                <span *ngIf="frmPayment.controls['validity'].errors['invalidDate']" style="color: red;">תאריך לא
+                    חוקי</span>
+                <span *ngIf="frmPayment.controls['validity'].errors['pastDate']" style="color: red;">הוזן תאריך
+                    עבר</span>
+                <span *ngIf="frmPayment.controls['validity'].errors['yearTooLarge']" style="color: red;">השנה גדולה
+                    מדי</span>
+            </span>
+        </div>
+        <div class="form-group">
+            <label>3 ספרות בגב הכרטיס</label><br>
+            <input class="form-control" type="text" formControlName="tag"
+                [class.border-danger]="frmPayment.controls['tag'].errors"
+                [class.aaa]="!frmPayment.controls['tag'].errors" /><br>
+            @if(frmPayment.controls['tag'].errors){
+            <span *ngIf="frmPayment.controls['tag'].errors['required']" style="color: red;"> שדה חובה </span>
+            <span *ngIf="frmPayment.controls['tag'].errors['minlength']" style="color: red;"> מינימום 3 ספרות
+            </span>
+            <span *ngIf="frmPayment.controls['tag'].errors['maxlength']" style="color: red;"> מקסימום 3 ספרות
+            </span>
+            <span *ngIf="frmPayment.controls['tag'].errors['pattern']" style="color: red;">מספרים בלבד</span>
+            }
+        </div>
+        <div class="form-group">
+            <label>תעודת זהות בעל הכרטיס</label><br>
+            <input class="form-control" type="text" formControlName="idNumber"
+                [class.border-danger]="frmPayment.controls['idNumber'].errors"
+                [class.aaa]="!frmPayment.controls['idNumber'].errors" /><br>
+            <span *ngIf="frmPayment.controls['idNumber']?.errors?.['minlength']" style="color: red;"> מינימום 9
+                ספרות
+                <span *ngIf="frmPayment.controls['idNumber']?.errors?.['maxlength']" style="color: red;"> מקסימום 9
+                    ספרות
+                </span>
+                <span *ngIf="frmPayment.controls['idNumber']?.errors?.['pattern']" style="color: red;">מספרים
+                    בלבד</span>
+            </span>
+        </div>
+        <div style="margin-top: 30px; margin-right: 33%;">
+            <p-button [disabled]="!frmPayment.valid" (click)="pay()" [outlined]="true">לתשלום</p-button>
+            <p-button (click)="route()" styleClass="closeButton" severity="danger" [outlined]="true">close</p-button>
+        </div>
+        <div class="payment-container">
+            <div *ngIf="isProcessing" class="spinner-overlay">
+                <div class="spinner">
+                    <div class="spinner-circle"></div><br>
+                    <span>מבצע תשלום...</span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <p-dialog />

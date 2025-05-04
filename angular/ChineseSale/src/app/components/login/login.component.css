@@ -1,0 +1,84 @@
+body{
+    align-items: center;
+}
+
+.login-container {
+    background-color: #f9f9f9; /* צבע רקע רך */
+    border-radius: 10px; /* פינות מעוגלות */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); /* צל עדין */
+    max-width: 25%; /* רוחב מקסימלי */
+    margin: auto; /* ממרכז את הקונטיינר */
+    padding: 20px; /* רווח פנימי */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.form-container {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: #ffffff; /* צבע רקע לבן */
+    border-radius: 10px; /* פינות מעוגלות */
+    padding: 20px; /* רווח פנימי */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* צל עדין */
+}
+
+.label {
+    font-weight: 600; /* מודגש */
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.input-field {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: 1px solid #cccccc; /* גבול רך */
+    border-radius: 5px; /* פינות מעוגלות */
+    padding: 10px; /* רווח פנימי */
+    width: 100%; /* רוחב מלא */
+    transition: border-color 0.3s; /* אנימציה רכה */
+}
+
+.aaa:focus {
+    outline: none; /* הסרת ה-outline המוגדר כברירת מחדל */
+    border-color: #007bff; /* צבע מסגרת שונה כאשר ה-input במצב פוקוס */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); 
+}
+.border-danger:focus{
+    outline: none; /* הסרת ה-outline המוגדר כברירת מחדל */
+    border-color: #ff0000; /* צבע מסגרת שונה כאשר ה-input במצב פוקוס */
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5); 
+}
+
+.divider {
+    margin: 20px 0; /* רווח בין הדיבידרים */
+    font-weight: bold; /* מודגש */
+}
+.flex{
+    margin-top: 7%;
+}
+b{
+    background-color: #f9f9f9;
+}
+p-button{
+    margin-right: 36%;
+}
+
+.password-input-container {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    left: 10px; /* המרחק מהקצה השמאלי של השדה */
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent; /* להפוך את הרקע שקוף */
+    border: none; /* להסיר גבול */
+    cursor: pointer; /* להוסיף יד על העכבר */
+}
+
+.input-field {
+    padding-left: 30px; /* להוסיף רווח מצד שמאל כדי לא להסתיר את הכפתור */
+}
+
+.icon-size {
+    font-size: 25px; /* שנה את המספר בהתאם לגודל הרצוי */
+    color: #000; /* תוכל לשנות את הצבע של האייקון אם תרצה */
+}
+

@@ -1,0 +1,96 @@
+p-button {
+    margin-right: 1%;
+}
+
+input {
+    width: 200px;
+    height: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    padding: 5px; /* רווח פנימי */
+    border: 1px solid black; /* מסגרת שחורה דקיקה */
+    border-radius: 5px; /* קצוות עגולים */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* הצללה קלה */
+    transition: border-color 0.3s; /* אנימציה לשינוי צבע המסגרת */
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+input:focus {
+    outline: none; /* הסרת ה-outline המוגדר כברירת מחדל */
+    border-color: #007bff; /* צבע מסגרת שונה כאשר ה-input במצב פוקוס */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* הצללה כאשר ה-input במצב פוקוס */
+}
+
+label{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    position: relative;
+    font-size: 20;
+}
+
+input:focus + label,
+label:hover {
+    color: #007bff;
+}
+
+select{
+    width: 200px;
+    height: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    padding: 5px; /* רווח פנימי */
+    border: 1px solid black; /* מסגרת שחורה דקיקה */
+    border-radius: 5px; /* קצוות עגולים */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* הצללה קלה */
+    transition: border-color 0.3s; /* אנימציה לשינוי צבע המסגרת */
+    margin-bottom: 10px;
+}
+
+select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+.file-upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    margin-top: 5px;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: blue;
+    transition: background-color 0.3s;
+    background-color: rgba(0, 0, 255, 0.2);
+    border: none;
+}
+
+.custom-file-upload:hover {
+    background-color: rgba(0, 0, 255, 0.4);
+}
+
+
+.picture {
+    width: 100px; /* רוחב קבוע */
+    height: 100px; /* גובה קבוע */
+    border-radius: 12px; /* קצוות עגולים */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* הוספת צל */
+    object-fit: cover; 
+}
+i{
+    font-size: 30px;
+}

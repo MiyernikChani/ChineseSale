@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeicons/2.0.0/primeicons.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeng/18.0.0/themes/saga-blue/theme.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/primeng/18.0.0/primeng.min.css">
+
+<p-toast></p-toast>
+
+<p-dialog header="Edit donator" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }" (onHide)="close()">
+    <div>
+        <form [formGroup]="frmDonator">
+            <div class="flex flex-col gap-2 form-group">
+                <label for="name" class="label">שם</label>
+                <input formControlName="name" pInputText id="name" type="text" class="input-field form-control"
+                    [class.border-danger]="frmDonator.controls['name'].errors"
+                    [class.aaa]="!frmDonator.controls['name'].errors" />
+                @if(frmDonator.controls['name'].errors){
+                <span *ngIf="frmDonator.controls['name']?.errors?.['required']" style="color: red;"> שדה חובה </span>
+                <span *ngIf="frmDonator.controls['name']?.errors?.['minlength']" style="color: red;"> מינימום 2 תוים </span>
+                <span *ngIf="frmDonator.controls['name']?.errors?.['maxlength']" style="color: red;"> מקסימום 2 תוים </span>
+                }
+            </div>
+            <div class="flex flex-col gap-2 form-group">
+                <label for="phone" class="label">טלפון</label>
+                <input formControlName="phone" pInputText id="phone" type="text" class="input-field form-control"
+                    [class.border-danger]="frmDonator.controls['phone'].errors"
+                    [class.aaa]="!frmDonator.controls['phone'].errors" />
+                @if(frmDonator.controls['phone'].errors){
+                <span *ngIf="frmDonator.controls['phone']?.errors?.['required']" style="color: red;"> שדה חובה </span>
+                <span *ngIf="frmDonator.controls['phone']?.errors?.['minlength']" style="color: red;"> מינימום 9 ספרות </span>
+                <span *ngIf="frmDonator.controls['phone']?.errors?.['maxlength']" style="color: red;"> מקסימום 10 ספרות </span>
+                <span *ngIf="frmDonator.controls['phone']?.errors?.['pattern']" style="color: red;">מספרים בלבד</span>
+                }
+            </div>
+            <div class="flex flex-col gap-2 form-group">
+                <label for="mail" class="label">מייל</label>
+                <div class="password-input-container">
+                    <button type="button" class="password-toggle">
+                    </button>
+                    <input formControlName="mail" id="mail" class="input-field form-control"
+                        [class.border-danger]="frmDonator.controls['mail'].errors"
+                        [class.aaa]="!frmDonator.controls['mail'].errors" />
+                </div>
+                @if(frmDonator.controls['mail'].errors){
+                <span *ngIf="frmDonator.controls['mail']?.errors?.['required']" style="color: red;"> שדה חובה </span>
+                <span *ngIf="frmDonator.controls['mail']?.errors?.['email']" style="color: red;"> כתובת המייל אינה תקינה
+                </span>
+                }
+            </div>
+            <div class="flex flex-col gap-2 form-group">
+                <label for="address" class="label">כתובת</label>
+                <input formControlName="address" pInputText id="address" type="text" class="input-field form-control"
+                    [class.border-danger]="frmDonator.controls['address'].errors"
+                    [class.aaa]="!frmDonator.controls['address'].errors" />
+                @if(frmDonator.controls['address'].errors){
+                <span *ngIf="frmDonator.controls['address']?.errors?.['required']" style="color: red;"> שדה חובה </span>
+                }
+            </div>
+            <div class="flex flex-col gap-2">
+                <p-button [disabled]="!frmDonator.valid" label="שמירה" icon="pi pi-check" class="btn-login" (click)="updateDonator($event)"/>
+            </div>
+        </form>
+    </div>
+</p-dialog>

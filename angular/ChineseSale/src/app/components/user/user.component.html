@@ -1,0 +1,114 @@
+<div *ngIf="basketVisible" class="basket-overlay">
+    <div class="basket-content">
+        <router-outlet />
+    </div>
+</div>
+
+<p-toast></p-toast>
+<div [ngClass]="basketVisible? 'width': 'ss'">
+    <p-dataview #dv [value]="giftList" [layout]="layout">
+        <ng-template #header>
+            <div class="flex items-center justify-between">
+                <div class="flex items-center justify-between container">
+                    <span class="text-xl font-bold center-content">רכישת כרטיסים</span>
+                    <button class="winners" text (click)="winners()" pTooltip="לצפייה ברשימת הזוכים"
+                        tooltipPosition="bottom">
+                        <i class="pi pi-trophy"></i>
+                    </button>
+
+                    <button class="addGift" text pTooltip="לצפיה בסל" tooltipPosition="bottom"><i
+                            class="pi pi-shopping-cart" (click)="showBaskate()"></i></button>
+                    <button class="logout" text (click)="logOut()" pTooltip="LogOut" tooltipPosition="bottom"><i
+                            class="pi pi-sign-out"></i></button>
+                </div>
+                <div class="header">
+                    <p-selectbutton [(ngModel)]="layout" [options]="options" [allowEmpty]="false">
+                        <ng-template #item let-item>
+                            <i [ngClass]="item.value === 'list' ? 'pi pi-bars' : 'pi pi-table'"></i>
+                        </ng-template>
+                    </p-selectbutton>
+                </div>
+            </div>
+        </ng-template>
+
+        <p-table [value]="giftList" class="margin" class="page">
+            <th style="background-color: transparent;" pSortableColumn="name">
+                <p-sortIcon field="name" />
+            </th>
+            <ng-template #list let-items>
+                <div *ngFor="let item of items" class="list-item">
+                    <div class="item-info">
+                        <div class="item-image-container">
+                            <img [src]="'assets/images/'+item.picture" [alt]="item.name" />
+                            <span [ngClass]="item.status ? 'status-label-available' : 'status-label'">
+                                {{ item.status ? 'available' : 'not available' }}
+                            </span>
+                        </div>
+                        <div class="item-category">{{ item.category.title }}</div>
+                        <div class="item-name">{{ item.name }}</div>
+                        <div class="item-price">{{ item.price }} ₪</div>
+                        <div class="action-buttons">
+                            <button class="red-heart-icon-button">
+                                <i class="pi pi-heart"></i>
+                            </button>
+                            <button class="add-to-cart" [disabled]="!item.status" (click)="addToCart(item.id)">
+                                <i class="pi pi-shopping-cart"></i> הוספה לסל
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+
+
+            <ng-template #grid let-items>
+                <div class="grid-container">
+                    <div *ngFor="let product of items" class="dataview-product grid-view">
+                        <div class="relative image-container">
+                            <img [src]="'assets/images/'+product.picture" [alt]="product.name" />
+                            <span [ngClass]="product.status ? 'status-label-available' : 'status-label'">
+                                {{ product.status ? 'available' : 'not available' }}
+                            </span>
+                        </div>
+                        <div class="product-details">
+                            <div>
+                                <span class="category">{{ product.category.title }}</span>
+                                <div class="product-name">{{ product.name }}</div>
+                            </div>
+                            <div class="price-and-actions">
+                                <span class="product-price">{{ product.price }} ₪</span>
+                                <div class="action-buttons">
+                                    <button class="add-to-cart" [disabled]="!product.status"
+                                        (click)="addToCart(product.id)">
+                                        <i class="pi pi-shopping-cart"></i> הוספה לסל
+                                    </button>
+                                    <button class="red-heart-icon-button">
+                                        <i class="pi pi-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-table>
+    </p-dataview>
+</div>
+
+
+<p-dialog header="רשימת הזוכים" [modal]="true" [(visible)]="vi" [style]="{ width: '30rem', maxHeight: '75vh', borderRadius: '10px' }">
+    <div class="winners-dialog-content">
+      <div class="winners-list" *ngIf="winnersList.length > 0">
+        <div *ngFor="let item of winnersList" class="winner-item">
+          <div class="winner-image">
+            <img [src]="'assets/images/'+item.gift.picture" [alt]="item.gift.name" class="rounded-image" />
+          </div>
+          <div class="winner-details">
+            <div class="gift-name">{{ item.gift.name }}</div>
+            <div class="winner-name">{{ item.customer.firstName + ' ' + item.customer.lastName }}</div>
+          </div>
+        </div>
+      </div>
+      <p-button label="סגור" icon="pi pi-times" class="cancel-button" (click)="vi = false"></p-button>
+    </div>
+  </p-dialog>
+  

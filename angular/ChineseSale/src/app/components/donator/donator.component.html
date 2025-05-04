@@ -1,0 +1,93 @@
+<!-- 
+הוספות
+מיון לפי קטגוריה/מתנה/מחיר כמו בסרבר
+-->
+
+<p-toast></p-toast>
+<p-confirmDialog header="הינך רוצה למחוק את התורם?" icon="pi pi-exclamation-triangle" [visible]="confirmDialogVisible"
+    [style]="{width: '50vw'}" [closable]="false">
+    <ng-template pTemplate="footer">
+        <p-button label="Yes" icon="pi pi-check" (click)="onConfirm()" [outlined]="true"></p-button>
+        <p-button label="No" icon="pi pi-times" (click)="onReject()" severity="danger" [outlined]="true"></p-button>
+    </ng-template>
+</p-confirmDialog>
+
+<div class="table">
+    <p-table [value]="donatorList" [paginator]="true" [rows]="10" [first]="first" [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '35rem'}"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" (onPage)="pageChange($event)"
+        [rowsPerPageOptions]="[1, 3, 10]">
+
+        <ng-template #caption>
+            <div class="flex items-center justify-between container">
+                <button class="logout" text (click)="logOut()" pTooltip="LogOut" tooltipPosition="bottom"><i
+                        class="pi pi-sign-out"></i></button>
+                <button class="winnersReport" text (click)="winnersReport()" pTooltip="להורדת טופס זוכים"
+                    tooltipPosition="bottom"><i class="pi pi-download"></i></button>
+                <button class="totalRevenue" text (click)="totalRevenue()" pTooltip="סך הכנסות"
+                    tooltipPosition="bottom"><i class="pi pi-dollar"></i></button>
+                <button class="removeWinners" text (click)="removeWinners()" pTooltip="מחיקת זכיות"
+                    tooltipPosition="bottom"><i class="pi pi-undo"></i></button>
+                <button class="donators" text routerLink="/admin" pTooltip="ניהול מתנות" tooltipPosition="bottom"><i
+                        class="pi pi-gift"></i></button>
+                <span class="text-xl font-bold">תורמים</span>
+                <button class="addGift" text (click)="addDonator()" pTooltip="לחץ להוספת תורם"
+                    tooltipPosition="bottom"><i class="pi pi-plus"></i></button>
+                <p-iconfield class="columnFilter">
+                    <p-inputicon class="icon" styleClass="pi pi-search" />
+                    <p-columnFilter type="text" field="name" placeholder="      חפש לפי תורם" ariaLabel="Filter Name"
+                        filterMatchMode="contains"></p-columnFilter>
+                </p-iconfield>
+            </div>
+        </ng-template>
+
+        <ng-template #header>
+            <div class="head">
+                <th>מספר מזהה</th>
+                <th>שם</th>
+                <th>טלפון</th>
+                <th>מייל</th>
+                <th>כתובת</th>
+                <th>רשימת תרומות</th>
+                <th>מחיקה</th>
+                <th>עריכה</th>
+            </div>
+        </ng-template>
+        <ng-template #body let-product>
+            <div class="item">
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.phone }}</td>
+                <td>{{ product.mail }}</td>
+                <td>{{ product.address }}</td>
+                <td>
+                    <div class="scrollable-list">
+                        <ng-container *ngFor="let gift of product.gifts">
+                            <div class="gift-item">{{ gift.id+": "+gift.name }}</div>
+                        </ng-container>
+                    </div>
+                </td>
+                <td>
+                    <p-button label="מחיקה" severity="danger" icon="pi pi-trash"
+                        (click)="deleteDonator($event, product.id)"></p-button>
+                </td>
+                <td><p-button (click)="updateDonator(product.id)" label="עריכה" icon="pi pi-pencil" /></td>
+            </div>
+        </ng-template>
+
+        <ng-template #footer></ng-template>
+    </p-table>
+</div>
+
+<p-dialog [(visible)]="revenue" [modal]="true" [closable]="false" [style]="{ width: '30vw', textAlign: 'center' }"
+    class="tr">
+    <div class="revenue-container">
+        <h2>סך ההכנסות ברגע זה:</h2>
+        <h3 class="revenue-amount">{{ tr }} ₪</h3>
+        <button class="close-button" (click)="closeD()">
+            <i class="pi pi-check"></i> סגור
+        </button>
+    </div>
+</p-dialog>
+
+<router-outlet />

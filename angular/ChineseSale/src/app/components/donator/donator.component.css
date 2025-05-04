@@ -1,0 +1,503 @@
+.w-24-rounded {
+    width: 100px;
+    /* רוחב קבוע */
+    height: 100px;
+    /* גובה קבוע */
+    border-radius: 12px;
+    /* קצוות עגולים */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    /* הוספת צל */
+    object-fit: cover;
+}
+
+th {
+    font-size: 110%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 12.5%;
+}
+
+td {
+    font-size: 110%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    width: 12.5%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.p-table th,
+.p-table td {
+    width: 100px;
+    /* קבע את הרוחב הרצוי */
+    text-align: center;
+    /* אם תרצה, תוכל גם לסדר את הטקסט במרכז */
+}
+
+.table {
+    margin: 50px;
+}
+
+span {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 120px;
+}
+
+.item {
+    border: 1px solid #d1d1d1;
+    /* מסגרת עדינה */
+    border-radius: 8px;
+    /* קצוות עגולים */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    /* צל עדין */
+    padding: 10px;
+    /* ריווח פנימי */
+    transition: transform 0.2s;
+    /* אנימציה רכה */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 99.5%;
+    margin-right: 4px;
+    display: flex;
+    /* מפעיל את ה-flexbox */
+    align-items: center;
+    /* ממרכז את האלמנטים ביחס לגובה */
+}
+
+.head {
+    display: flex;
+    /* מפעיל את ה-flexbox */
+    margin: 20px;
+}
+
+.item:hover {
+    transform: scale(1.003);
+    /* הגדלה קלה בזמן ריחוף */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    /* צל חזק יותר בזמן ריחוף */
+    background-color: #e2e8f0;
+}
+
+dt {
+    justify-content: center;
+    /* מפזר את האלמנטים באופן שווה */
+}
+
+.addGiftToolTip {
+    background-color: red;
+}
+
+.addGift {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(24, 24, 129);
+    transition: background-color 0.3s;
+    background-color: rgba(24, 24, 129, 0.2);
+    border: none;
+    position: absolute;
+    right: 6%;
+}
+
+.columnFilter {
+    position: absolute;
+    left: 0%;
+    margin-top: 1%;
+    margin-left: 5%;
+}
+
+.addGift:hover {
+    background-color: rgba(24, 24, 129, 0.4);
+}
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.fixed-header {
+    position: fixed;
+    top: 0;
+    /* מקום קבוע בחלק העליון */
+    left: 0;
+    /* מקום קבוע בצד השמאלי */
+    width: 100%;
+    /* רוחב מלא */
+    background-color: white;
+    /* צבע רקע */
+    z-index: 1000;
+    /* לוודא שזה מעל אלמנטים אחרים */
+}
+
+.winnersReport {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: purple;
+    transition: background-color 0.3s;
+    background-color: rgba(130, 1, 130, 0.2);
+    border: none;
+    position: absolute;
+    right: 10%;
+}
+
+.winnersReport:hover {
+    background-color: rgba(130, 1, 130, 0.4);
+}
+
+
+.logout {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(169, 92, 5);
+    transition: background-color 0.3s;
+    background-color: rgb(169, 92, 5, 0.2);
+    border: none;
+    position: absolute;
+    right: 2%;
+}
+
+.logout:hover {
+    background-color: rgb(169, 92, 5, 0.4);
+}
+
+
+/* למנוע גלילה אופקית */
+body {
+    overflow-x: hidden;
+}
+
+/* דיאלוג */
+.winner-dialog .ui-dialog-content {
+    background: linear-gradient(45deg, #f39c12, #f1c40f);
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+    padding: 30px;
+    color: #fff;
+    transform-origin: center;
+    will-change: transform, opacity;
+    /* אופטימיזציה */
+    width: 100%;
+    /* גודל קבוע */
+    height: auto;
+    /* למנוע שינוי גובה */
+    overflow: hidden;
+    /* למנוע גלישה */
+}
+
+/* קונטיינר */
+.winner-container {
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    overflow: hidden;
+    /* למנוע גלילה */
+}
+
+/* כותרת */
+.congrats-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 2px 2px 5px #333;
+    margin-bottom: 20px;
+    animation: pulse 1.5s infinite;
+    will-change: transform;
+    /* אופטימיזציה */
+}
+
+/* מתנה */
+.gift-name {
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: #ffdd00;
+    text-shadow: 3px 3px 5px #555;
+    margin: 15px 0;
+    animation: bounce 2s infinite;
+    will-change: transform;
+    /* אופטימיזציה */
+}
+
+/* זוכה */
+.winner-name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ffffff;
+    text-shadow: 3px 3px 5px #333;
+    margin-bottom: 25px;
+    animation: zoomIn 1s ease-in-out;
+    will-change: transform;
+    /* אופטימיזציה */
+}
+
+/* כפתור סגירה */
+.close-button {
+    background-color: #27ae60;
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.close-button:hover {
+    background-color: #2ecc71;
+}
+
+/* אנימציות */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-10px);
+    }
+
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+
+.totalRevenue {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(70, 67, 70);
+    transition: background-color 0.3s;
+    background-color: rgba(101, 99, 101, 0.2);
+    border: none;
+    position: absolute;
+    right: 14%;
+}
+
+.totalRevenue:hover {
+    background-color: rgba(77, 75, 77, 0.4);
+}
+
+.tr {
+    text-align: center;
+}
+
+.revenue-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.revenue-amount {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #2ecc71;
+    /* ירוק להדגשה */
+    margin: 20px 0;
+}
+
+.close-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #3498db;
+    /* כחול */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.close-button:hover {
+    background-color: #2980b9;
+    /* כחול כהה */
+}
+
+.close-button i {
+    font-size: 1.2rem;
+}
+
+
+.removeWinners {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(3, 71, 21);
+    transition: background-color 0.3s;
+    background-color: rgb(3, 71, 21, 0.2);
+    border: none;
+    position: absolute;
+    right: 18%;
+}
+
+.removeWinners:hover {
+    background-color: rgb(3, 71, 21, 0.4);
+}
+
+
+.donators {
+    margin-top: 1%;
+    height: 50px !important;
+    width: 50px !important;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: transparent;
+    color: rgb(149, 46, 63);
+    transition: background-color 0.3s;
+    background-color: rgb(149, 46, 63, 0.2);
+    border: none;
+    position: absolute;
+    right: 22%;
+}
+
+.donators:hover {
+    background-color: rgb(149, 46, 63, 0.4);
+}
+
+/* סגנון כללי לטבלה */
+.item td {
+    vertical-align: top;
+    /* מונע שגיאות יישור */
+    padding: 10px;
+}
+
+/* חלונית גלילה */
+.scrollable-list {
+    max-height: 150px; /* גובה קבוע */
+    overflow-y: auto; /* גלילה אנכית */
+    overflow-x: hidden; /* ביטול גלילה אופקית */
+    border: 1px solid #dcdcdc; /* מסגרת עדינה */
+    border-radius: 8px; /* פינות מעוגלות */
+    padding: 10px; /* ריווח פנימי */
+    background-color: #f9f9f9; /* רקע בהיר */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* אפקט צל */
+  }
+  
+  /* פריטים ברשימה */
+  .gift-item {
+    padding: 8px 10px; /* ריווח פנימי */
+    margin-bottom: 5px; /* ריווח בין הפריטים */
+    background-color: #ffffff; /* רקע לבן */
+    border: 1px solid #e0e0e0; /* מסגרת עדינה */
+    border-radius: 5px; /* פינות מעוגלות */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* אפקט צל */
+    transition: transform 0.2s, box-shadow 0.2s; /* אנימציה */
+    text-align: right;
+  }
+  
+  .gift-item:hover {
+    transform: translateY(-3px); /* הרמת הפריט */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* צל מוגבר */
+  }
+  
+  /* התאמה אישית של מד הגלילה */
+  .scrollable-list::-webkit-scrollbar {
+    width: 10px; /* רוחב המד */
+  }
+  
+  .scrollable-list::-webkit-scrollbar-track {
+    background: #f1f1f1; /* צבע הרקע של המד */
+    border-radius: 10px; /* פינות מעוגלות */
+  }
+  
+  .scrollable-list::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4caf50, #81c784); /* מעבר צבעים במד */
+    border-radius: 10px; /* פינות מעוגלות */
+    border: 2px solid #f1f1f1; /* מסגרת לבנה */
+  }
+  
+  .scrollable-list::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #388e3c, #66bb6a); /* צבע כהה יותר כאשר מרחפים */
+  }
+  
+  /* גודל המד לא מתרומם מעל הפריט */
+  .scrollable-list::-webkit-scrollbar {
+    width: 10px !important;
+    height: 10px !important;
+  }
+  
+
+  .pi {
+    font-size: 20px;  /* גודל האייקון */
+    font-weight: bold;  /* עיבוי האייקון */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);  /* הוספת צל בהיר לאייקון */
+}

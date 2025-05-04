@@ -1,0 +1,58 @@
+<div *ngIf="!payment">
+    <app-payment (paymentEvent)="handlePaymentEvent($event)"></app-payment>
+    <!-- <router-outlet class="basket-content"/> -->
+</div>
+
+<div *ngIf="cartList && cartList.length || historyList && historyList.length; else noItems" class="shopping-cart">
+    <div class="shopping-cart-header">
+        <button class="close-cart-btn">
+            <span><i class="pi pi-times" (click)="close()"></i></span>
+        </button>
+        <p-divider layout="horizontal" class="!flex md:!hidden divider"><b>סל קניות</b></p-divider>
+    </div>
+    <div *ngFor="let option of cartList" class="cart-item">
+        <img class="item-image" [src]="'assets/images/'+option.gift.picture" [alt]="option.gift.name" />
+        <div class="item-details">
+            <span class="item-name">{{ option.gift.name }}</span>
+            <span class="item-category">
+                כמות:
+                <div class="quantity-control">
+                    <button class="quantity-btn" (click)="updateQuantity(option, -1)">-</button>
+                    <span class="quantity-value">{{ option.ammount }}</span>
+                    <button class="quantity-btn" (click)="updateQuantity(option, 1)">+</button>
+                </div>
+            </span>
+            <span class="item-category">מחיר ליחידה: {{ option.gift.price }} ₪</span>
+        </div>
+        <span class="item-price">סה"כ: {{ option.totalPrice }} ₪</span>
+        <button class="remove-item" (click)="updateQuantity(option, -option.ammount)"><i
+                class="pi pi-trash"></i></button>
+    </div>
+    <div class="cart-footer">
+        <span class="item-price" style="margin-top: 7px; margin-right: 30px;">סה"כ לתשלום: {{ price }} ₪</span>
+        <button [disabled]="!cartList.length" class="checkout" (click)="buyCart()">רכישה</button>
+    </div>
+
+    <p-divider layout="horizontal" class="!flex md:!hidden divider"><b>הסטורית קניות</b></p-divider>
+    <div *ngFor="let option of historyList" class="cart-item">
+        <img class="item-image" [src]="'assets/images/'+option.gift.picture" [alt]="option.gift.name" />
+        <div class="item-details">
+            <span class="item-name">{{ option.gift.name }}</span>
+            <span class="quantity-value">כמות: {{ option.ammount }}</span>
+            <span class="item-category">מחיר ליחידה: {{ option.gift.price }} ₪</span>
+        </div>
+        <span class="item-price">סה"כ: {{ option.totalPrice }} ₪</span>
+    </div>
+</div>
+
+<ng-template #noItems>
+    <div class="shopping-cart">
+        <div class="shopping-cart-header">
+            <button class="close-cart-btn">
+                <span><i class="pi pi-times" (click)="close()"></i></span>
+            </button>
+            <p-divider layout="horizontal" class="!flex md:!hidden divider"><b>סל קניות</b></p-divider>
+        </div>
+        <p class="no-items-message">סל הקניות ריק</p>
+    </div>
+</ng-template>
